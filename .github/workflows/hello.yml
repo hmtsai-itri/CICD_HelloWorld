@@ -1,0 +1,26 @@
+# 1. Workflow 名稱：會在 GitHub UI 中顯示
+name:  👋 Hello World Workflow
+
+# 2. 觸發事件：定義這個 workflow 什麼時候會運行
+#    這裡設定為在 'push' 事件發生時執行，即當您推送代碼到任何分支時
+on: [push]
+
+# 3. 定義工作 (Jobs)：一個 workflow 可以包含一個或多個 job
+jobs:
+  # job 的 ID，你可以自由命名 (例如：build, test, deploy)
+  say-hello:
+    # 執行環境：指定這個 job 要在什麼作業系統上執行
+    # 'ubuntu-latest' 是 GitHub 提供的最新版 Ubuntu 虛擬機
+    runs-on: ubuntu-latest
+    
+    # 步驟 (Steps)：這個 job 裡要執行的所有動作序列
+    steps:
+      # 第一個步驟：使用一個名為 'actions/checkout@v4' 的官方 action
+      # 這個 action 的作用是將您的程式碼下載到虛擬機中
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      
+      # 第二個步驟：執行一個簡單的命令
+      - name: Print Hello Message
+        # 'run' 關鍵字後面跟著要在虛擬機上執行的 shell 命令
+        run: echo "Hello World! This is my first GitHub Action running on $(date)"
